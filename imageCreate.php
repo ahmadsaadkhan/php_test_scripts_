@@ -1,28 +1,27 @@
 <?php
-require_once ('db/MysqliDb.php');
-$db = new MysqliDb ('localhost', 'root', '', 'testscriptsdb');
+require_once('db/MysqliDb.php');
+$db = new MysqliDb('localhost', 'root', '', 'testscriptsdb');
 
-$users = $db->get ("users", null);
+$users = $db->get("users", null);
 if ($db->count > 0)
-    foreach (json_decode(json_encode($users)) as $user) { 
+    foreach (json_decode(json_encode($users)) as $user) {
         echo '<br />';
         echo $user->id;
         echo '<br />';
         echo $user->image;
 
-        if($user->image) {
-            $filename = "images/".$user->image;
-            if (file_exists($filename)){
+        if ($user->image) {
+            $filename = "images/" . $user->image;
+            if (file_exists($filename)) {
                 echo '<br />';
                 echo "File exist.";
-            }else{
+            } else {
                 echo '<br />';
                 echo "File does not exist.";
-                copy('images/download.png', 'images/'.$user->image);
-                copy('images/download.png', 'images/thumb_'.$user->image);
-
+                copy('images/profileimage2.jpg', 'images/' . $user->image);
+                copy('images/profileimage2.jpg', 'images/thumb_' . $user->image);
             }
-        }   
+        }
     }
 
 
